@@ -1,6 +1,5 @@
 import sys
 import logging
-import time
 import rtde_client.rtde.rtde as rtde
 import rtde_client.rtde.rtde_config as rtde_config
 from operator import sub,abs
@@ -114,7 +113,6 @@ def move_to_position(new_pos):
 
     # Will try to move to position till current_position() is within a max error range from new_pos
     while max(map(abs, map(sub, current_position(), new_pos))) >= MAX_ERROR:
-        # time.sleep(0.01)
         # print (max(map(abs, map(sub, current_position(), new_pos))))
 
         # Checks for the state of the connection
@@ -145,7 +143,6 @@ def move_to_position_no_append(new_pos):
 
     # Will try to move to position till current_position() is within a max error range from new_pos
     while max(map(abs, map(sub, current_position(), new_pos))) >= MAX_ERROR:
-        # time.sleep(0.01)
         # print (max(map(abs, map(sub, current_position(), new_pos))))
 
         # Checks for the state of the connection
