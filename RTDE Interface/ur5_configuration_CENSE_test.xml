@@ -2,7 +2,9 @@
 <rtde_config>
 	<recipe key="state">
 		<field name="actual_TCP_pose" type="VECTOR6D"/>
+		<field name="actual_q" type="VECTOR6D"/>
 		<field name="output_int_register_0" type="INT32"/>
+		<field name="output_int_register_1" type="INT32"/>
 	</recipe>
 
 	<recipe key="setp">
@@ -16,5 +18,9 @@
 
 	<recipe key="watchdog">
 		<field name="input_int_register_0" type="INT32"/>
+	</recipe>
+
+	<recipe key="joint">
+		<field name="input_int_register_1" type="INT32"/>
 	</recipe>
 </rtde_config>

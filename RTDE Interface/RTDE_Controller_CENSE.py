@@ -1,3 +1,12 @@
+"""
+===========================
+@Author  : aguajardo<aguajardo.me>
+@Version: 1.0    24/03/2017
+This is a module for RTDE Control
+of a UR5 from Universal Robots.
+===========================
+"""
+
 import sys
 import logging
 import rtde_client.rtde.rtde as rtde
@@ -10,6 +19,7 @@ ROBOT_PORT = 30004
 config_filename = 'ur5_configuration_CENSE_test.xml'
 
 START_POSITION = [-0.3391, 0.2359, 0.4865, -0.0030, -0.0938, 1.6205]
+CAMERA_POSITION = [-1.5446, -2.1386, 2.6833, -0.9662, 1.5348, -1.5817]
 
 RTDE_PROTOCOL_VERSION = 1
 
@@ -23,6 +33,7 @@ conf = rtde_config.ConfigFile(config_filename)
 state_names, state_types = conf.get_recipe('state')
 setp_names, setp_types = conf.get_recipe('setp')
 watchdog_names, watchdog_types = conf.get_recipe('watchdog')
+joint_names, joint_types = conf.get_recipe('joint')
 
 con = rtde.RTDE(ROBOT_HOST, ROBOT_PORT)
 # end variable and object setup
@@ -44,6 +55,9 @@ setp = con.send_input_setup(setp_names, setp_types)
 # Send configuration for the watchdog timer (1 Hz) input recipe
 watchdog = con.send_input_setup(watchdog_names, watchdog_types)
 
+# Joint trigger: when 0 the points given are interpreted as pose, when 1 as joint angles
+joint = con.send_input_setup(joint_names, joint_types)
+
 # Set input registers (double) to 0
 setp.input_double_register_0 = 0
 setp.input_double_register_1 = 0
@@ -54,6 +68,9 @@ setp.input_double_register_5 = 0
 
 # Set input register for watchdog timer to 0 so that it can be reset
 watchdog.input_int_register_0 = 0
+
+# Set input register for joint to 0
+joint.input_int_register_1 = 0
 
 
 # Starts data sync
@@ -83,7 +100,12 @@ def current_position():
     if state is None:
         return 'Failed'
 
-    # If successful RTDE sync is paused and it returns the list with the current position
+    # if the joint values are needed then return joint values
+    if state.output_int_register_1 == 1:
+        # If successful it returns the list with the current position
+        return state.actual_q
+
+    # If successful it returns the list with the current position
     return state.actual_TCP_pose
 
 
@@ -192,3 +214,22 @@ def go_start_via_path():
     # If successful all_positions will be cleared and redefined with initial position
     Positions.all_positions = list(rev_all_positions)
     return 'SUCCESS'
+
+
+# go_camera moves the robot to the position defined as camera position
+def go_camera():
+    # Checks for the state of the connection
+    state = con.receive()
+
+    # If output config not initialized, RTDE synchronization is inactive, or RTDE is disconnected it returns 'Failed'
+    if state is None:
+        return 'Failed'
+
+    # Tell the server the following points are to be interpreted as joint values
+    joint.input_int_register_1 = 1
+    con.send(joint)
+
+    move_to_position_no_append(CAMERA_POSITION)
+
+    return 'SUCCESS'
+

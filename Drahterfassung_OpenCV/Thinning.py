@@ -1,6 +1,7 @@
 """
 ===========================
-@Author  : Linbo<linbo.me>
+@Author  : Linbo<linbo>
+@Edited by: aguajardo<aguajardo.me>
 @Version: 1.0    25/10/2014
 This is the implementation of the
 Zhang-Suen Thinning Algorithm for skeletonization.
@@ -10,6 +11,7 @@ Zhang-Suen Thinning Algorithm for skeletonization.
 import matplotlib
 import matplotlib.pyplot as plt
 import skimage.io as io
+import numpy as np
 
 def neighbours(x, y, image):
     "Return 8-neighbours of image point P1(x,y), in a clockwise order"
@@ -28,7 +30,9 @@ def transitions(neighbours):
 def zhangSuen(image):
     "the Zhang-Suen Thinning Algorithm"
     Image_Thinned = image.copy()  # deepcopy to protect the original image
-    changing1 = changing2 = 1  # the points to be removed (set as 0)
+    r, c = image.shape
+    Test = np.zeros((r,c),np.uint8)
+    changing1 = changing2 = changing3 = 1  # the points to be removed (set as 0)
     while changing1 or changing2:  # iterates until no further changes occur in the image
         # Step 1
         changing1 = []
@@ -57,4 +61,19 @@ def zhangSuen(image):
                     changing2.append((x, y))
         for x, y in changing2:
             Image_Thinned[x][y] = 0
+    while changing3:
+        # Step 3
+        changing3 = 0
+        rows, columns = Image_Thinned.shape  # x for rows, y for columns
+        for x in range(1, rows - 1):
+            for y in range(1, columns - 1):
+                P2, P3, P4, P5, P6, P7, P8, P9 = n = neighbours(x, y, Image_Thinned)
+                if Image_Thinned[x][y]==0 and ((P2 + P4 == 2 and P5 + P7 + P9 <= 2 and P6 + P8 + P3 == 0) or
+                                                (P4 + P6 == 2 and P3 + P7 + P9 <= 2 and P8 + P2 + P5 == 0) or
+                                                (P6 + P8 == 2 and P3 + P5 + P9 <= 2 and P2 + P4 + P7 == 0) or
+                                                (P8 + P2 == 2 and P3 + P5 + P7 <= 2 and P4 + P6 + P9 == 0)):
+                    changing3 = 1
+                    Test[x][y] = 1
+                    Image_Thinned[x][y] = 1
+
     return Image_Thinned
