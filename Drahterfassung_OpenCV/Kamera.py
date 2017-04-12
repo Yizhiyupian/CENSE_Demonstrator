@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import Kalibrierung as cal
 
 port = 1
-frames = 35
+frames = 5
 
 class Kamera:
     cam = None

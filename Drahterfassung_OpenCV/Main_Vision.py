@@ -16,17 +16,19 @@ import Color_Detection as colors
 import Thinning as skelet
 import Kamera as cam
 
-
 name = 'Bilder\Test5.png'
+scale = 0.5
+bands = 8
+thresh = 3
+color = 25
+focus = [25, 35, 255, 35, 255]
+bands, thresh, color, focus = colors.preview_colors(color, focus, bands, thresh, scale)
 cam.capture_image(name)
-images = colors.color_vision(name, 25, [5, 45, 255, 70, 255], 8, 4, 0.6)
+images = colors.color_vision(color, focus, bands, thresh, scale, name)
 
-ret, mask_binary = cv2.threshold(images[11], 1, 1, cv2.THRESH_BINARY)
-
-skeleton = skelet.zhangSuen(images[11])
-rows, cols, __ = images[0].shape
-print(rows)
-print(cols)
+ret, mask_binary = cv2.threshold(images[len(images)-1], 0, 1, cv2.THRESH_BINARY)
+rows, cols = images[len(images)-1].shape
+skeleton = skelet.zhangSuen(mask_binary)
 img_skelet = np.zeros((rows, cols, 3), np.uint8)
 
 for i in range(cols):
@@ -39,7 +41,7 @@ for i in range(cols):
 
 images.append(img_skelet)
 titles = ['Original Image', 'Result', 'Binary Mask', 'Skeleton']
-plot = [images[0], images[len(images)-1], images[len(images)-2], skeleton]
+plot = [images[1], images[len(images)-1], images[len(images)-2], skeleton]
 
 for i in xrange(len(plot)):
     plt.subplot(2,2,i+1),plt.imshow(plot[i])

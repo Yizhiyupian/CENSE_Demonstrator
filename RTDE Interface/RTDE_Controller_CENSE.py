@@ -18,8 +18,9 @@ ROBOT_HOST = '169.254.203.187'
 ROBOT_PORT = 30004
 config_filename = 'ur5_configuration_CENSE_test.xml'
 
-START_POSITION = [-0.3391, 0.2359, 0.4865, -0.0030, -0.0938, 1.6205]
-CAMERA_POSITION = [-1.5446, -2.1386, 2.6833, -0.9662, 1.5348, -1.5817]
+START_POSITION = [-0.3161039480153674, 0.3924906578528691, 0.7247283304252988, -1.183113381725879, -1.2024495503305885, -1.1883290121554926]
+CENTER_POSITION = [-0.12028426334880883, 0.22592083702208404, 0.6888784830906385, -1.1776661923930953, -1.1603887788030312, -1.2277226782518533]
+CAMERA_POSITION = [-1.5806005636798304, -2.0574949423419397, 2.765082836151123, -3.0610531012164515, -1.6087492148028772, -1.5503385702716272]
 
 RTDE_PROTOCOL_VERSION = 1
 
@@ -102,10 +103,10 @@ def current_position():
 
     # if the joint values are needed then return joint values
     if state.output_int_register_1 == 1:
-        # If successful it returns the list with the current position
+        # If successful it returns the list with the current joint position
         return state.actual_q
 
-    # If successful it returns the list with the current position
+    # If successful it returns the list with the current TCP position
     return state.actual_TCP_pose
 
 
@@ -132,11 +133,19 @@ def list_to_setp(setp, list):
 
 # move_to_position changes the position and orientation of the TCP of the robot relative to the defined Cartesian plane
 def move_to_position(new_pos):
+    # Checks for the state of the connection
+    state = con.receive()
+
+    # If output config not initialized, RTDE synchronization is inactive, or RTDE is disconnected it returns 'Failed'
+    if state is None:
+        return 'Failed'
+
+    # Set joint to 0
+    joint.input_int_register_1 = 0
+    con.send(joint)
 
     # Will try to move to position till current_position() is within a max error range from new_pos
     while max(map(abs, map(sub, current_position(), new_pos))) >= MAX_ERROR:
-        # print (max(map(abs, map(sub, current_position(), new_pos))))
-
         # Checks for the state of the connection
         state = con.receive()
 
@@ -162,10 +171,8 @@ def move_to_position(new_pos):
 
 # move_to_position changes the position and orientation of the TCP of the robot relative to the defined Cartesian plane
 def move_to_position_no_append(new_pos):
-
     # Will try to move to position till current_position() is within a max error range from new_pos
     while max(map(abs, map(sub, current_position(), new_pos))) >= MAX_ERROR:
-        # print (max(map(abs, map(sub, current_position(), new_pos))))
 
         # Checks for the state of the connection
         state = con.receive()
@@ -191,6 +198,10 @@ def move_to_position_no_append(new_pos):
 
 # go_start_via_path moves the robot back to the defined starting position through all recorded positions
 def go_start_via_path():
+
+    # Set joint to 0
+    joint.input_int_register_1 = 0
+    con.send(joint)
 
     # Makes a new list which is the reverses of all_positions to be able to go from end position to start position
     rev_all_positions = list(Positions.all_positions)
@@ -225,11 +236,32 @@ def go_camera():
     if state is None:
         return 'Failed'
 
+    # Set joint to 0
+    joint.input_int_register_1 = 0
+    con.send(joint)
+
+    move_to_position_no_append(CENTER_POSITION)
+
     # Tell the server the following points are to be interpreted as joint values
     joint.input_int_register_1 = 1
     con.send(joint)
 
     move_to_position_no_append(CAMERA_POSITION)
+
+    # Set joint to 0
+    joint.input_int_register_1 = 0
+    con.send(joint)
+
+    # Set pose to 0 so the robot will not continue moving
+    # Set input registers (double) to 0
+    setp.input_double_register_0 = 0
+    setp.input_double_register_1 = 0
+    setp.input_double_register_2 = 0
+    setp.input_double_register_3 = 0
+    setp.input_double_register_4 = 0
+    setp.input_double_register_5 = 0
+
+    con.send(setp)
 
     return 'SUCCESS'
 
