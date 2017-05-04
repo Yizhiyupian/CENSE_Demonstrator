@@ -27,20 +27,20 @@ import select
 import sys
 import logging
 
-import serialize
+import RTDE_Interface.rtde_client.rtde.serialize as serialize
 
 DEFAULT_TIMEOUT = 1.0
 
 
 class Command:
-    RTDE_REQUEST_PROTOCOL_VERSION = 86  # ascii V
-    RTDE_GET_URCONTROL_VERSION = 118  # ascii v
-    RTDE_TEXT_MESSAGE = 77  # ascii M
-    RTDE_DATA_PACKAGE = 85  # ascii U
-    RTDE_CONTROL_PACKAGE_SETUP_OUTPUTS = 79  # ascii O
-    RTDE_CONTROL_PACKAGE_SETUP_INPUTS = 73  # ascii I
-    RTDE_CONTROL_PACKAGE_START = 83  # ascii S
-    RTDE_CONTROL_PACKAGE_PAUSE = 80  # ascii P
+    RTDE_REQUEST_PROTOCOL_VERSION = 86 # ascii V or 86
+    RTDE_GET_URCONTROL_VERSION = 118  # ascii v or 118
+    RTDE_TEXT_MESSAGE = 77  # ascii M or 77
+    RTDE_DATA_PACKAGE = 85  # ascii U or 85
+    RTDE_CONTROL_PACKAGE_SETUP_OUTPUTS = 79  # ascii O or 79
+    RTDE_CONTROL_PACKAGE_SETUP_INPUTS = 73  # ascii I or 73
+    RTDE_CONTROL_PACKAGE_START = 83  # ascii S or 83
+    RTDE_CONTROL_PACKAGE_PAUSE = 80  # ascii P or 80
 
 
 class ConnectionState:
@@ -63,7 +63,7 @@ class RTDE(object):
         if self.__sock:
             return
 
-        self.__buf = ''
+        self.__buf = b''
         try:
             self.__sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.__sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -104,7 +104,7 @@ class RTDE(object):
 
     def send_input_setup(self, variables, types=[]):
         cmd = Command.RTDE_CONTROL_PACKAGE_SETUP_INPUTS
-        payload = ','.join(variables)
+        payload = b','.join(variables)
         result = self.__sendAndReceive(cmd, payload)
         if len(types) != 0 and not self.__list_equals(result.types, types):
             logging.error('Data type inconsistency for input setup: ' +
@@ -117,7 +117,7 @@ class RTDE(object):
 
     def send_output_setup(self, variables, types=[]):
         cmd = Command.RTDE_CONTROL_PACKAGE_SETUP_OUTPUTS
-        payload = ','.join(variables)
+        payload = b','.join(variables)
         result = self.__sendAndReceive(cmd, payload)
         if len(types) != 0 and not self.__list_equals(result.types, types):
             logging.error('Data type inconsistency for output setup: ' +
@@ -152,7 +152,8 @@ class RTDE(object):
         if self.__conn_state != ConnectionState.STARTED:
             logging.error('Cannot send when RTDE synchronization is inactive')
             return
-        if not self.__input_config.has_key(input_data.recipe_id):
+        if input_data.recipe_id not in self.__input_config:
+        #if not self.__input_config.has_key(input_data.recipe_id):
             logging.error('Input configuration id not found: ' + str(input_data.recipe_id))
             return
         config = self.__input_config[input_data.recipe_id]
@@ -187,19 +188,22 @@ class RTDE(object):
         else:
             logging.error('Unknown package command: ' + str(cmd))
 
-    def __sendAndReceive(self, cmd, payload=''):
+    def __sendAndReceive(self, cmd, payload=b''):
         if self.__sendall(cmd, payload):
             return self.__recv(cmd)
         else:
             return None
 
-    def __sendall(self, command, payload=''):
+    def __sendall(self, command, payload=b''):
         fmt = '>HB'
+        #print('Payload: ', type(payload))
         size = struct.calcsize(fmt) + len(payload)
         buf = struct.pack(fmt, size, command) + payload
         #print(type(buf))
-        #print('Buf: ', buf)
-        #print('Struct: ', struct.pack(fmt, size, command))
+        #print(buf)
+
+        #buf = str(command) + convert_to_str(payload)
+        #print(command, payload, buf, sep="   ")
 
         if self.__sock is None:
             logging.error('Unable to send: not connected to Robot')
@@ -219,7 +223,7 @@ class RTDE(object):
             #print(len(readable))
             if len(readable):
                 more = self.__sock.recv(4096)
-                #print('more: ', more, type(more))
+                #print(more, type(more), sep="    ")
                 if len(more) == 0:
                     self.__trigger_disconnected()
                     return None
@@ -229,9 +233,7 @@ class RTDE(object):
             while len(self.__buf) >= 3:
                 # Attempts to extract a packet
                 packet_header = serialize.ControlHeader.unpack(self.__buf)
-
-                #print(len(self.__buf), packet_header.size)
-
+                #print(len(self.__buf), packet_header.size, sep='      ')
                 if len(self.__buf) >= packet_header.size:
                     packet, self.__buf = self.__buf[3:packet_header.size], self.__buf[packet_header.size:]
                     data = self.__on_packet(packet_header.command, packet)
@@ -320,3 +322,29 @@ class RTDE(object):
 
 
         return True
+
+def convert_to_str(input_data):
+    output_data = ''
+    #print(input_data, type(input_data), sep='  ')
+    try:
+        output_data = input_data.decode('utf-8')
+    except AttributeError:
+        logging.debug('Input already String')
+        output_data = input_data
+    except:
+        logging.error('Cannot convert to String')
+
+    return output_data
+
+def convert_to_bin(input_data):
+    output_data = ''
+
+    try:
+        output_data = input_data.encode('utf-8')
+    except AttributeError:
+        logging.debug('Input already Binary')
+        output_data = input_data
+    except:
+        logging.error('Cannot convert to Binary')
+
+    return output_data

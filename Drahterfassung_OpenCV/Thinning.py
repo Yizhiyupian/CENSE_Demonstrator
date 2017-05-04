@@ -10,7 +10,7 @@ Zhang-Suen Thinning Algorithm for skeletonization.
 
 import matplotlib
 import matplotlib.pyplot as plt
-import skimage.io as io
+#import skimage.io as io
 import numpy as np
 
 def neighbours(x, y, image):

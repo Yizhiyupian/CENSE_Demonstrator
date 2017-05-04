@@ -10,10 +10,10 @@ webcam and saving them as a png.
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import Kalibrierung as cal
+import Drahterfassung_OpenCV.Kalibrierung as cal
 
 # camera port and amount of frames to be discarded while focusing
-port = 1
+port = 0
 frames = 5
 
 
@@ -56,7 +56,7 @@ def capture_image(name):
         Kamera.cam = cv2.VideoCapture(port)
         Kamera.released = False
 
-    for i in xrange(frames):
+    for i in range(frames):
         temp = get_image_internal()
 
     camera_capture = get_image_internal()
@@ -65,5 +65,8 @@ def capture_image(name):
 
     # image is transformed into undistorted version using the module Kalibrierung.py
     camera_capture = cal.undistort_img(camera_capture)
+
+    # image perspective is undistorted using the module Kalibrierung.py
+    #camera_capture = cal.perspective_undistort(camera_capture)
 
     cv2.imwrite(name, camera_capture)

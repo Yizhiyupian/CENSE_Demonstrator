@@ -12,15 +12,15 @@ thinning algorithm.
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import Color_Detection as colors
-import Thinning as skelet
-import Kamera as cam
+import Drahterfassung_OpenCV.Color_Detection as colors
+import Drahterfassung_OpenCV.Thinning as skelet
+import Drahterfassung_OpenCV.Kamera as cam
 
 
 # takes a picture and saves it in the file path 'name', processes it and saves the processed image as 'world_img.png'
 def take_picture():
     # file path
-    name = 'Bilder\Test5.png'
+    name = 'Drahterfassung_OpenCV\Bilder\camera_picture.png'
 
     # scale at which the image will be processed
     scale = 0.7
@@ -54,7 +54,7 @@ def take_picture():
 
     # the mask is then run through a thinning algorithm to generate a 1 pixel wide line
     skeleton = skelet.zhangSuen(mask_binary)
-    cv2.imwrite('world_img.png', skeleton)
+    cv2.imwrite('Drahterfassung_OpenCV\Bilder\world_img.png', skeleton)
 
     # superimposes the skeleton image on the original image
     img_skelet = np.zeros((rows, cols, 3), np.uint8)
@@ -67,15 +67,21 @@ def take_picture():
                 img_skelet[j, i] = images[0][j, i]
 
     images.append(img_skelet)
+    images.append(skeleton)
+
+    # returns the images in an array
+    return images
 
 
 # plots the HSV, superimposed image, binary mask, and the skeleton
-def plot_images(images, skeleton):
+def plot_images(images):
     titles = ['Original Image', 'Result', 'Binary Mask', 'Skeleton']
-    plot = [images[1], images[len(images)-1], images[len(images)-2], skeleton]
+    plot = [images[1], images[len(images)-2], images[len(images)-3], images[len(images)-1]]
 
-    for i in xrange(len(plot)):
+    for i in range(len(plot)):
         plt.subplot(2,2,i+1),plt.imshow(plot[i])
         plt.title(titles[i])
         plt.xticks([]),plt.yticks([])
     plt.show()
+
+#plot_images(take_picture())

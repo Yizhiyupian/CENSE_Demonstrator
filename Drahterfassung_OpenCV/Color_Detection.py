@@ -82,7 +82,7 @@ def colorDetect(bands, color, focus, scale, name=None, image=None):
     mask = cv2.inRange(hsv, min_a, max_a)
 
     # the process is repeated for the amount of bands needed
-    for i in xrange(bands):
+    for i in range(bands):
         minp += (focus[0])/bands
         maxp += (focus[0])/bands
         min_a = np.array([minp, focus[1], focus[3]])
@@ -105,7 +105,7 @@ def nothing(x):
 # a 'real-time' video stream of images processed by the color detection and sliders for the parameters will be shown
 def preview_colors(color, focus, bands, thresh, scale):
     # object for image capture initialized for camera in port 1
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
 
     # the window is initialized with the name 'Settings'
     cv2.namedWindow('Settings')

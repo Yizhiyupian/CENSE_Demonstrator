@@ -1,6 +1,5 @@
 #from World.world import World
 from RTDE_Interface import RTDE_Controller_CENSE as rtde
-from Drahterfassung_OpenCV import Main_Vision as vision
 import math
 import numpy as np
 
@@ -59,10 +58,13 @@ class RealWorld():
         pass
 
     def take_picture(self):
+        rtde.disengage()
         rtde.go_camera()
-        vision.take_picture()
-        rtde.go_start_via_path()
+        rtde.take_picture()
+        rtde.go_start_disengaged()
+        rtde.engage()
         pass
+
 
 RealWorld = RealWorld()
 print('CH1')
@@ -70,16 +72,17 @@ RealWorld.reset()
 
 
 while True:
-    print('CH2')
-    RealWorld.move_up()
-    print('CH3')
-    RealWorld.move_down()
-    print('CH4')
-    RealWorld.move_right()
-    print('CH5')
-    RealWorld.move_left()
-    print('CH6')
-    RealWorld.turn_clockwise()
-    print('CH7')
-    RealWorld.turn_counter_clockwise()
-    print('CH8')
+    # print('CH2')
+    # RealWorld.move_up()
+    # print('CH3')
+    # RealWorld.move_down()
+    # print('CH4')
+    # RealWorld.move_right()
+    # print('CH5')
+    # RealWorld.move_left()
+    # print('CH6')
+    # RealWorld.turn_clockwise()
+    # print('CH7')
+    # RealWorld.turn_counter_clockwise()
+    # print('CH8')
+    RealWorld.take_picture()

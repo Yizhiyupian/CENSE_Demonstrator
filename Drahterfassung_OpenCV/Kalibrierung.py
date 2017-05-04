@@ -9,11 +9,11 @@ This is a camera calibration method.
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-import glob
-import Kamera as cam
+from Drahterfassung_OpenCV import Kamera as cam
 import time
-from calibration_vars import objpv
-from calibration_vars import imgpv
+from Drahterfassung_OpenCV.calibration_vars import objpv
+from Drahterfassung_OpenCV.calibration_vars import imgpv
+import Drahterfassung_OpenCV.Color_Detection as colors
 
 
 class Points:
@@ -96,3 +96,41 @@ def undistort_img(img):
     # returns the image
     dst = dst[y:y + h, x:x + w]
     return dst
+
+
+def perspective_undistort(image):
+    # scale at which the image will be processed
+    scale = 0.7
+
+    # the color focus area will be segmented into color bands this states how many bands will be analyzed
+    bands = 8
+
+    # minimum amount of bands in which a pixel has to be to make it to the resulting mask
+    thresh = 3
+
+    # color hue to be looked for
+    color = 85
+
+    # variation range for hue, saturation, and value e.g.: color+focus = max_hue, color-focus = min_hue
+    focus = [25, 35, 255, 35, 255]
+
+    # image is color analyzed to find the location of the corner points
+    images = colors.color_vision(color, focus, bands, thresh, scale, image=image)
+
+    # contours of the corner points are calculated
+    im2, contours, hierarchy = cv2.findContours(images[len(images)-1], cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+    # array with the coordinates of the center points of the corner points are saved on an array
+    center_points = []
+    for cnt in contours:
+        (x, y), radius = cv2.minEnclosingCircle(cnt)
+        center_points.append([int(x), int(y)])
+
+    # center point coordinates and end coordinates for the corner center points are prepped for the transformation
+    rows, cols = images[len(images)-1].shape
+    pts1 = np.float32(center_points)
+    pts2 = np.float32([[0, 0], [rows, 0], [0, cols], [rows, cols]])
+    M = cv2.getPerspectiveTransform(pts1, pts2)
+    undistorted = cv2.warpPerspective(image, M, (rows, cols))
+
+    return undistorted

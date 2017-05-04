@@ -9,20 +9,18 @@ of a UR5 from Universal Robots.
 
 import sys
 import logging
-import RTDE_Interface.rtde_client.rtde.rtde3_1 as rtde
+import RTDE_Interface.rtde_client.rtde.rtde as rtde
 import RTDE_Interface.rtde_client.rtde.rtde_config as rtde_config
 from operator import sub,abs
-from Drahterfassung_OpenCV import Main_Vision as vision
 
 # begin variable and object setup
 ROBOT_HOST = '169.254.203.187'
 ROBOT_PORT = 30004
 config_filename = 'ur5_configuration_CENSE_test.xml'
 
-START_POSITION = [0.336, -0.378, 0.720, 0, 0, 0]
-DIS_START_POSITION = [0.336, -0.328, 0.720, 0, 0, 0]
-CENTER_POSITION = [0.11867, -0.30962, 0.71688, 0, 0, 0]
-CAMERA_POSITION = [1.58721, -1.87299, 2.67201, -2.94720, -1.60205, 1.61322]
+START_POSITION = [0.336,- 0.378, 0.730, 0, 0, 0]
+CENTER_POSITION = [-0.12028426334880883, 0.22592083702208404, 0.6888784830906385, -1.1776661923930953, -1.1603887788030312, -1.2277226782518533]
+CAMERA_POSITION = [-1.5806005636798304, -2.0574949423419397, 2.765082836151123, -3.0610531012164515, -1.6087492148028772, -1.5503385702716272]
 
 RTDE_PROTOCOL_VERSION = 1
 
@@ -34,24 +32,9 @@ logging.getLogger().setLevel(logging.INFO)
 
 conf = rtde_config.ConfigFile(config_filename)
 state_names, state_types = conf.get_recipe('state')
-
-state_names = [bytes(name, 'utf-8') for name in state_names]
-state_types = [bytes(type, 'utf-8') for type in state_types]
-
 setp_names, setp_types = conf.get_recipe('setp')
-
-setp_names = [bytes(name, 'utf-8') for name in setp_names]
-setp_types = [bytes(type, 'utf-8') for type in setp_types]
-
 watchdog_names, watchdog_types = conf.get_recipe('watchdog')
-
-watchdog_names = [bytes(name, 'utf-8') for name in watchdog_names]
-watchdog_types = [bytes(type, 'utf-8') for type in watchdog_types]
-
 joint_names, joint_types = conf.get_recipe('joint')
-
-joint_names = [bytes(name, 'utf-8') for name in joint_names]
-joint_types = [bytes(type, 'utf-8') for type in joint_types]
 
 con = rtde.RTDE(ROBOT_HOST, ROBOT_PORT)
 # end variable and object setup
@@ -119,54 +102,14 @@ def current_position():
     # If output config not initialized, RTDE synchronization is inactive, or RTDE is disconnected it returns 'Failed'
     if state is None:
         return 'Failed'
-    #print(state.__dict__)
+
     # if the joint values are needed then return joint values
-    if state.__dict__[b'output_int_register_1'] == 1:
+    if state.output_int_register_1 == 1:
         # If successful it returns the list with the current joint position
-        return state.__dict__[b'actual_q']
+        return state.actual_q
 
     # If successful it returns the list with the current TCP position
-    return state.__dict__[b'actual_TCP_pose']
-
-
-# disengage moves the robot back away from the cable
-def disengage():
-    # Checks for the state of the connection
-    state = con.receive()
-
-    # If output config not initialized, RTDE synchronization is inactive, or RTDE is disconnected it returns 'Failed'
-    if state is None:
-        return 'Failed'
-
-    # Set joint to 0
-    joint.input_int_register_1 = 0
-    con.send(joint)
-
-    dis_pos = current_position()
-    dis_pos[1] += 0.05
-    move_to_position_no_append(dis_pos)
-
-    return 'SUCCESS'
-
-
-# engage() moves the robot forward onto the cable
-def engage():
-    # Checks for the state of the connection
-    state = con.receive()
-
-    # If output config not initialized, RTDE synchronization is inactive, or RTDE is disconnected it returns 'Failed'
-    if state is None:
-        return 'Failed'
-
-    # Set joint to 0
-    joint.input_int_register_1 = 0
-    con.send(joint)
-
-    dis_pos = current_position()
-    dis_pos[1] -= 0.05
-    move_to_position_no_append(dis_pos)
-
-    return 'SUCCESS'
+    return state.actual_TCP_pose
 
 
 # This class hold the list of all positions
@@ -213,7 +156,7 @@ def move_to_position(new_pos):
             return 'Failed'
 
         # The output_int_register_0 defines if the robot is in motion.
-        if state.__dict__[b'output_int_register_0'] != 0:
+        if state.output_int_register_0 != 0:
 
             # Changes the value from setp to the new position
             list_to_setp(setp, new_pos)
@@ -232,7 +175,7 @@ def move_to_position(new_pos):
 def move_to_position_no_append(new_pos):
     # Will try to move to position till current_position() is within a max error range from new_pos
     while max(map(abs, map(sub, current_position(), new_pos))) >= MAX_ERROR:
-        #print(current_position())
+
         # Checks for the state of the connection
         state = con.receive()
 
@@ -241,7 +184,7 @@ def move_to_position_no_append(new_pos):
             return 'Failed'
 
         # The output_int_register_0 defines if the robot is in motion.
-        if state.__dict__[b'output_int_register_0'] != 0:
+        if state.output_int_register_0 != 0:
 
             # Changes the value from setp to the new position
             list_to_setp(setp, new_pos)
@@ -259,6 +202,7 @@ def move_to_position_no_append(new_pos):
 def go_start_via_path():
 
     # Set joint to 0
+    print(setp.__dict__)
     joint.input_int_register_1 = 0
     con.send(joint)
 
@@ -286,18 +230,6 @@ def go_start_via_path():
     return 'SUCCESS'
 
 
-def go_start_disengaged():
-
-    # Set joint to 0
-    joint.input_int_register_1 = 0
-    con.send(joint)
-
-    # Moves to start position disengaged
-    move_to_position_no_append(DIS_START_POSITION)
-
-    return 'SUCCESS'
-
-
 # go_camera moves the robot to the position defined as camera position
 def go_camera():
     # Checks for the state of the connection
@@ -310,6 +242,7 @@ def go_camera():
     # Set joint to 0
     joint.input_int_register_1 = 0
     con.send(joint)
+
     move_to_position_no_append(CENTER_POSITION)
 
     # Tell the server the following points are to be interpreted as joint values
@@ -334,8 +267,4 @@ def go_camera():
     con.send(setp)
 
     return 'SUCCESS'
-
-# takes picture
-def take_picture():
-    vision.take_picture()
 

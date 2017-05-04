@@ -70,35 +70,34 @@ class Message(object):
 
 
 def get_item_size(data_type):
-    if data_type.startswith(b'VECTOR6'):
+    if data_type.startswith('VECTOR6'):
         return 6
-    elif data_type.startswith(b'VECTOR3'):
+    elif data_type.startswith('VECTOR3'):
         return 3
     return 1
 
 def unpack_field(data, offset, data_type):
     size = get_item_size(data_type)
-    if(data_type == b'VECTOR6D' or
-       data_type == b'VECTOR3D'):
+    if(data_type == 'VECTOR6D' or
+       data_type == 'VECTOR3D'):
         return [float(data[offset+i]) for i in range(size)]
-    elif(data_type == b'VECTOR6UINT32'):
+    elif(data_type == 'VECTOR6UINT32'):
         return [int(data[offset+i]) for i in range(size)]
-    elif(data_type == b'DOUBLE'):
+    elif(data_type == 'DOUBLE'):
         return float(data[offset])
-    elif(data_type == b'UINT32' or
-         data_type == b'UINT64'):
+    elif(data_type == 'UINT32' or
+         data_type == 'UINT64'):
         return int(data[offset])
-    elif(data_type == b'VECTOR6INT32'):
+    elif(data_type == 'VECTOR6INT32'):
         return [int(data[offset+i]) for i in range(size)]
-    elif(data_type == b'INT32' or
-         data_type == b'UINT8'):
+    elif(data_type == 'INT32' or
+         data_type == 'UINT8'):
         return int(data[offset])
-    raise ValueError('unpack_field: unknown data type: ' + str(data_type, 'utf-8'))
+    raise ValueError('unpack_field: unknown data type: ' + data_type)
 
 
 class DataObject(object):
     recipe_id = None
-
     def pack(self, names, types):
         if len(names) != len(types):
             raise ValueError('List sizes are not identical.')
@@ -106,13 +105,12 @@ class DataObject(object):
         if(self.recipe_id is not None):
             l.append(self.recipe_id)
         for i in range(len(names)):
-            #print(self.__dict__)
-            if self.__dict__[str(names[i], 'utf-8')] is None:
-                raise ValueError('Uninitialized parameter: ', str(names[i], 'utf-8'))
-            if types[i].startswith(b'VECTOR'):
-                l.extend(self.__dict__[str(names[i], 'utf-8')])
+            if self.__dict__[names[i]] is None:
+                raise ValueError('Uninitialized parameter: ' + names[i])
+            if types[i].startswith('VECTOR'):
+                l.extend(self.__dict__[names[i]])
             else:
-                l.append(self.__dict__[str(names[i], 'utf-8')])
+                l.append(self.__dict__[names[i]])
         return l
     
     @staticmethod
@@ -142,14 +140,12 @@ class DataConfig(object):
         rmd = DataConfig();
         if has_recipe_id:
             rmd.id = struct.unpack_from('>B', buf)[0]
-            rmd.types = buf[1:].split(b',')
+            rmd.types = buf[1:].split(',')
             rmd.fmt = '>B'
         else:
-            rmd.types = buf[:].split(b',')
+            rmd.types = buf[:].split(',')
             rmd.fmt = '>'
         for i in rmd.types:
-            i = i.decode()
-            #print(i)
             if i=='INT32':
                 rmd.fmt += 'i'
             elif i=='UINT32':
@@ -176,10 +172,9 @@ class DataConfig(object):
         
     def pack(self, state):
         l = state.pack(self.names, self.types)
-        #print('self.fmt', self.fmt)
         return struct.pack(self.fmt, *l)
 
     def unpack(self, data):
-        li = struct.unpack_from(self.fmt, data)
+        li =  struct.unpack_from(self.fmt, data)
         return DataObject.unpack(li, self.names, self.types)
     
