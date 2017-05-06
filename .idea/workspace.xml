@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="512be39a-3b33-4c01-93f1-5c2f1fb85051" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Bilder/Test5.png" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Bilder/Test5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/CENSE_Demonstrator.iml" afterPath="$PROJECT_DIR$/.idea/CENSE_Demonstrator.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Bilder/camera_picture.png" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Bilder/camera_picture.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Bilder/world_img.png" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Bilder/world_img.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Color_Detection.py" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Color_Detection.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Kalibrierung.py" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Kalibrierung.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Kamera.py" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Kamera.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Main_Vision.py" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Main_Vision.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drahterfassung_OpenCV/Thinning.py" afterPath="$PROJECT_DIR$/Drahterfassung_OpenCV/Thinning.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py" afterPath="$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RTDE_Interface/rtde_client/__init__.py" afterPath="$PROJECT_DIR$/RTDE_Interface/rtde_client/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde.py" afterPath="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/serialize.py" afterPath="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/serialize.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/realWorld.py" afterPath="$PROJECT_DIR$/realWorld.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,12 +25,14 @@
     <splitter split-orientation="horizontal" split-proportion="0.46847346">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="realWorld.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="realWorld.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/realWorld.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1100">
-                  <caret line="1" column="56" lean-forward="false" selection-start-line="1" selection-start-column="56" selection-end-line="1" selection-end-column="56" />
-                  <folding />
+                <state relative-caret-position="-431">
+                  <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="2" selection-end-line="90" selection-end-column="34" />
+                  <folding>
+                    <element signature="e#31#87#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -45,14 +40,12 @@
           <file leaf-file-name="Main_Vision.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Main_Vision.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-629">
-                  <caret line="22" column="55" lean-forward="false" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+                <state relative-caret-position="277">
+                  <caret line="79" column="32" lean-forward="true" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
                   <folding>
                     <element signature="e#0#258#1" expanded="false" />
-                    <element signature="e#2257#2430#0" expanded="false" />
-                    <element signature="e#2291#2430#0" expanded="false" />
-                    <element signature="e#2644#2993#0" expanded="false" />
-                    <element signature="e#2841#2948#0" expanded="false" />
+                    <element signature="e#2951#3300#0" expanded="false" />
+                    <element signature="e#3148#3255#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -62,9 +55,26 @@
             <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Kamera.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="449">
-                  <caret line="71" column="4" lean-forward="true" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="37" />
+                  <caret line="71" column="37" lean-forward="true" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
                   <folding>
                     <element signature="e#203#213#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Kalibrierung.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Kalibrierung.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="361">
+                  <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#165#175#0" expanded="true" />
+                    <element signature="e#476#589#0" expanded="false" />
+                    <element signature="e#613#844#0" expanded="false" />
+                    <element signature="e#868#2260#0" expanded="false" />
+                    <element signature="e#2291#3075#0" expanded="false" />
+                    <element signature="e#3116#4556#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -73,78 +83,8 @@
           <file leaf-file-name="Color_Detection.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Color_Detection.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="259">
-                  <caret line="63" column="51" lean-forward="true" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="RTDE_Controller_CENSE.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-                  <folding>
-                    <element signature="e#0#192#1" expanded="false" />
-                    <element signature="e#194#204#0" expanded="true" />
-                    <element signature="e#1716#1747#0" expanded="false" />
-                    <element signature="e#2238#2261#0" expanded="false" />
-                    <element signature="e#2986#3106#0" expanded="false" />
-                    <element signature="e#3151#3167#0" expanded="false" />
-                    <element signature="e#3220#3236#0" expanded="false" />
-                    <element signature="e#3380#3990#0" expanded="false" />
-                    <element signature="e#3616#3638#0" expanded="false" />
-                    <element signature="e#3763#3873#0" expanded="false" />
-                    <element signature="e#4067#4494#0" expanded="false" />
-                    <element signature="e#4565#4992#0" expanded="false" />
-                    <element signature="e#5060#5109#0" expanded="false" />
-                    <element signature="e#5199#5316#0" expanded="false" />
-                    <element signature="e#5412#5513#0" expanded="false" />
-                    <element signature="e#5671#6910#0" expanded="false" />
-                    <element signature="e#6166#6734#0" expanded="false" />
-                    <element signature="e#6557#6706#0" expanded="false" />
-                    <element signature="e#7078#7994#0" expanded="false" />
-                    <element signature="e#7685#7834#0" expanded="false" />
-                    <element signature="e#8132#9156#0" expanded="false" />
-                    <element signature="e#8596#8910#0" expanded="false" />
-                    <element signature="e#9191#9377#0" expanded="false" />
-                    <element signature="e#9472#10454#0" expanded="false" />
-                    <element signature="e#10097#10150#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="rtde.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="181">
-                  <caret line="199" column="14" lean-forward="false" selection-start-line="199" selection-start-column="9" selection-end-line="199" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#1551#1564#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="rtde3.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="484">
-                  <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#1551#1564#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="serialize.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/serialize.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="239">
-                  <caret line="178" column="14" lean-forward="false" selection-start-line="178" selection-start-column="9" selection-end-line="178" selection-end-column="14" />
+                <state relative-caret-position="211">
+                  <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -153,26 +93,49 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="rtde3_1.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3_1.py">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file leaf-file-name="RTDE_Controller_CENSE.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="181">
-                  <caret line="327" column="10" lean-forward="false" selection-start-line="327" selection-start-column="5" selection-end-line="327" selection-end-column="10" />
+                <state relative-caret-position="449">
+                  <caret line="367" column="58" lean-forward="true" selection-start-line="367" selection-start-column="58" selection-end-line="367" selection-end-column="58" />
                   <folding>
-                    <element signature="e#1551#1564#0" expanded="true" />
+                    <element signature="e#0#192#1" expanded="false" />
+                    <element signature="e#194#204#0" expanded="true" />
+                    <element signature="e#1743#1774#0" expanded="false" />
+                    <element signature="e#2265#2288#0" expanded="false" />
+                    <element signature="e#3013#3133#0" expanded="false" />
+                    <element signature="e#3178#3194#0" expanded="false" />
+                    <element signature="e#3247#3263#0" expanded="false" />
+                    <element signature="e#4094#4521#0" expanded="false" />
+                    <element signature="e#4592#5019#0" expanded="false" />
+                    <element signature="e#5087#5159#0" expanded="false" />
+                    <element signature="e#5249#5366#0" expanded="false" />
+                    <element signature="e#5462#5563#0" expanded="false" />
+                    <element signature="e#5721#7009#0" expanded="false" />
+                    <element signature="e#6265#6833#0" expanded="false" />
+                    <element signature="e#6656#6805#0" expanded="false" />
+                    <element signature="e#7833#7982#0" expanded="false" />
+                    <element signature="e#8280#9304#0" expanded="false" />
+                    <element signature="e#8744#9058#0" expanded="false" />
+                    <element signature="e#9339#9525#0" expanded="false" />
+                    <element signature="e#9620#10602#0" expanded="false" />
+                    <element signature="e#10245#10298#0" expanded="false" />
+                    <element signature="e#10645#10681#0" expanded="false" />
+                    <element signature="e#10729#10756#0" expanded="false" />
+                    <element signature="e#10803#10831#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="RTDE_Controller_CENSE_2.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE_2.py">
+          <file leaf-file-name="rtde3_1.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3_1.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="123">
-                  <caret line="204" column="23" lean-forward="false" selection-start-line="204" selection-start-column="23" selection-end-line="204" selection-end-column="23" />
+                <state relative-caret-position="-1707">
+                  <caret line="251" column="8" lean-forward="false" selection-start-line="251" selection-start-column="8" selection-end-line="251" selection-end-column="8" />
                   <folding>
-                    <element signature="e#194#204#0" expanded="true" />
+                    <element signature="e#1551#1564#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -231,15 +194,15 @@
         <option value="$PROJECT_DIR$/Drahterfassung_OpenCV/Color_Detection.py" />
         <option value="$PROJECT_DIR$/RTDE_Interface/rtde_client/__init__.py" />
         <option value="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3.py" />
-        <option value="$PROJECT_DIR$/Drahterfassung_OpenCV/Kamera.py" />
-        <option value="$PROJECT_DIR$/Drahterfassung_OpenCV/Kalibrierung.py" />
         <option value="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3_1.py" />
         <option value="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde.py" />
         <option value="$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE_2.py" />
         <option value="$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/serialize.py" />
-        <option value="$PROJECT_DIR$/Drahterfassung_OpenCV/Main_Vision.py" />
-        <option value="$PROJECT_DIR$/realWorld.py" />
+        <option value="$PROJECT_DIR$/Drahterfassung_OpenCV/Kamera.py" />
+        <option value="$PROJECT_DIR$/Drahterfassung_OpenCV/Kalibrierung.py" />
         <option value="$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py" />
+        <option value="$PROJECT_DIR$/realWorld.py" />
+        <option value="$PROJECT_DIR$/Drahterfassung_OpenCV/Main_Vision.py" />
       </list>
     </option>
   </component>
@@ -265,6 +228,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -293,11 +257,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../RL" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -555,7 +518,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.058333334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -586,13 +549,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py</url>
-          <line>262</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -603,7 +559,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -641,7 +597,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1760">
           <caret line="83" column="38" lean-forward="true" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
-          <folding />
+          <folding>
+            <element signature="e#31#87#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -673,29 +631,28 @@
           <folding>
             <element signature="e#0#192#1" expanded="false" />
             <element signature="e#194#204#0" expanded="true" />
-            <element signature="e#1716#1747#0" expanded="false" />
-            <element signature="e#2238#2261#0" expanded="false" />
-            <element signature="e#2986#3106#0" expanded="false" />
-            <element signature="e#3151#3167#0" expanded="false" />
-            <element signature="e#3220#3236#0" expanded="false" />
-            <element signature="e#3380#3990#0" expanded="false" />
-            <element signature="e#3616#3638#0" expanded="false" />
-            <element signature="e#3763#3873#0" expanded="false" />
-            <element signature="e#4067#4494#0" expanded="false" />
-            <element signature="e#4565#4992#0" expanded="false" />
-            <element signature="e#5060#5109#0" expanded="false" />
-            <element signature="e#5199#5316#0" expanded="false" />
-            <element signature="e#5412#5513#0" expanded="false" />
-            <element signature="e#5671#6910#0" expanded="false" />
-            <element signature="e#6166#6734#0" expanded="false" />
-            <element signature="e#6557#6706#0" expanded="false" />
-            <element signature="e#7078#7994#0" expanded="false" />
-            <element signature="e#7685#7834#0" expanded="false" />
-            <element signature="e#8132#9156#0" expanded="false" />
-            <element signature="e#8596#8910#0" expanded="false" />
-            <element signature="e#9191#9377#0" expanded="false" />
-            <element signature="e#9472#10454#0" expanded="false" />
-            <element signature="e#10097#10150#0" expanded="false" />
+            <element signature="e#1743#1774#0" expanded="false" />
+            <element signature="e#2265#2288#0" expanded="false" />
+            <element signature="e#3013#3133#0" expanded="false" />
+            <element signature="e#3178#3194#0" expanded="false" />
+            <element signature="e#3247#3263#0" expanded="false" />
+            <element signature="e#4094#4521#0" expanded="false" />
+            <element signature="e#4592#5019#0" expanded="false" />
+            <element signature="e#5087#5159#0" expanded="false" />
+            <element signature="e#5249#5366#0" expanded="false" />
+            <element signature="e#5462#5563#0" expanded="false" />
+            <element signature="e#5721#7009#0" expanded="false" />
+            <element signature="e#6265#6833#0" expanded="false" />
+            <element signature="e#6656#6805#0" expanded="false" />
+            <element signature="e#7833#7982#0" expanded="false" />
+            <element signature="e#8280#9304#0" expanded="false" />
+            <element signature="e#8744#9058#0" expanded="false" />
+            <element signature="e#9339#9525#0" expanded="false" />
+            <element signature="e#9620#10602#0" expanded="false" />
+            <element signature="e#10245#10298#0" expanded="false" />
+            <element signature="e#10645#10681#0" expanded="false" />
+            <element signature="e#10729#10756#0" expanded="false" />
+            <element signature="e#10803#10831#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -742,29 +699,28 @@
           <folding>
             <element signature="e#0#192#1" expanded="false" />
             <element signature="e#194#204#0" expanded="true" />
-            <element signature="e#1716#1747#0" expanded="false" />
-            <element signature="e#2238#2261#0" expanded="false" />
-            <element signature="e#2986#3106#0" expanded="false" />
-            <element signature="e#3151#3167#0" expanded="false" />
-            <element signature="e#3220#3236#0" expanded="false" />
-            <element signature="e#3380#3990#0" expanded="false" />
-            <element signature="e#3616#3638#0" expanded="false" />
-            <element signature="e#3763#3873#0" expanded="false" />
-            <element signature="e#4067#4494#0" expanded="false" />
-            <element signature="e#4565#4992#0" expanded="false" />
-            <element signature="e#5060#5109#0" expanded="false" />
-            <element signature="e#5199#5316#0" expanded="false" />
-            <element signature="e#5412#5513#0" expanded="false" />
-            <element signature="e#5671#6910#0" expanded="false" />
-            <element signature="e#6166#6734#0" expanded="false" />
-            <element signature="e#6557#6706#0" expanded="false" />
-            <element signature="e#7078#7994#0" expanded="false" />
-            <element signature="e#7685#7834#0" expanded="false" />
-            <element signature="e#8132#9156#0" expanded="false" />
-            <element signature="e#8596#8910#0" expanded="false" />
-            <element signature="e#9191#9377#0" expanded="false" />
-            <element signature="e#9472#10454#0" expanded="false" />
-            <element signature="e#10097#10150#0" expanded="false" />
+            <element signature="e#1743#1774#0" expanded="false" />
+            <element signature="e#2265#2288#0" expanded="false" />
+            <element signature="e#3013#3133#0" expanded="false" />
+            <element signature="e#3178#3194#0" expanded="false" />
+            <element signature="e#3247#3263#0" expanded="false" />
+            <element signature="e#4094#4521#0" expanded="false" />
+            <element signature="e#4592#5019#0" expanded="false" />
+            <element signature="e#5087#5159#0" expanded="false" />
+            <element signature="e#5249#5366#0" expanded="false" />
+            <element signature="e#5462#5563#0" expanded="false" />
+            <element signature="e#5721#7009#0" expanded="false" />
+            <element signature="e#6265#6833#0" expanded="false" />
+            <element signature="e#6656#6805#0" expanded="false" />
+            <element signature="e#7833#7982#0" expanded="false" />
+            <element signature="e#8280#9304#0" expanded="false" />
+            <element signature="e#8744#9058#0" expanded="false" />
+            <element signature="e#9339#9525#0" expanded="false" />
+            <element signature="e#9620#10602#0" expanded="false" />
+            <element signature="e#10245#10298#0" expanded="false" />
+            <element signature="e#10645#10681#0" expanded="false" />
+            <element signature="e#10729#10756#0" expanded="false" />
+            <element signature="e#10803#10831#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -811,29 +767,28 @@
           <folding>
             <element signature="e#0#192#1" expanded="false" />
             <element signature="e#194#204#0" expanded="true" />
-            <element signature="e#1716#1747#0" expanded="false" />
-            <element signature="e#2238#2261#0" expanded="false" />
-            <element signature="e#2986#3106#0" expanded="false" />
-            <element signature="e#3151#3167#0" expanded="false" />
-            <element signature="e#3220#3236#0" expanded="false" />
-            <element signature="e#3380#3990#0" expanded="false" />
-            <element signature="e#3616#3638#0" expanded="false" />
-            <element signature="e#3763#3873#0" expanded="false" />
-            <element signature="e#4067#4494#0" expanded="false" />
-            <element signature="e#4565#4992#0" expanded="false" />
-            <element signature="e#5060#5109#0" expanded="false" />
-            <element signature="e#5199#5316#0" expanded="false" />
-            <element signature="e#5412#5513#0" expanded="false" />
-            <element signature="e#5671#6910#0" expanded="false" />
-            <element signature="e#6166#6734#0" expanded="false" />
-            <element signature="e#6557#6706#0" expanded="false" />
-            <element signature="e#7078#7994#0" expanded="false" />
-            <element signature="e#7685#7834#0" expanded="false" />
-            <element signature="e#8132#9156#0" expanded="false" />
-            <element signature="e#8596#8910#0" expanded="false" />
-            <element signature="e#9191#9377#0" expanded="false" />
-            <element signature="e#9472#10454#0" expanded="false" />
-            <element signature="e#10097#10150#0" expanded="false" />
+            <element signature="e#1743#1774#0" expanded="false" />
+            <element signature="e#2265#2288#0" expanded="false" />
+            <element signature="e#3013#3133#0" expanded="false" />
+            <element signature="e#3178#3194#0" expanded="false" />
+            <element signature="e#3247#3263#0" expanded="false" />
+            <element signature="e#4094#4521#0" expanded="false" />
+            <element signature="e#4592#5019#0" expanded="false" />
+            <element signature="e#5087#5159#0" expanded="false" />
+            <element signature="e#5249#5366#0" expanded="false" />
+            <element signature="e#5462#5563#0" expanded="false" />
+            <element signature="e#5721#7009#0" expanded="false" />
+            <element signature="e#6265#6833#0" expanded="false" />
+            <element signature="e#6656#6805#0" expanded="false" />
+            <element signature="e#7833#7982#0" expanded="false" />
+            <element signature="e#8280#9304#0" expanded="false" />
+            <element signature="e#8744#9058#0" expanded="false" />
+            <element signature="e#9339#9525#0" expanded="false" />
+            <element signature="e#9620#10602#0" expanded="false" />
+            <element signature="e#10245#10298#0" expanded="false" />
+            <element signature="e#10645#10681#0" expanded="false" />
+            <element signature="e#10729#10756#0" expanded="false" />
+            <element signature="e#10803#10831#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -880,29 +835,28 @@
           <folding>
             <element signature="e#0#192#1" expanded="false" />
             <element signature="e#194#204#0" expanded="true" />
-            <element signature="e#1716#1747#0" expanded="false" />
-            <element signature="e#2238#2261#0" expanded="false" />
-            <element signature="e#2986#3106#0" expanded="false" />
-            <element signature="e#3151#3167#0" expanded="false" />
-            <element signature="e#3220#3236#0" expanded="false" />
-            <element signature="e#3380#3990#0" expanded="false" />
-            <element signature="e#3616#3638#0" expanded="false" />
-            <element signature="e#3763#3873#0" expanded="false" />
-            <element signature="e#4067#4494#0" expanded="false" />
-            <element signature="e#4565#4992#0" expanded="false" />
-            <element signature="e#5060#5109#0" expanded="false" />
-            <element signature="e#5199#5316#0" expanded="false" />
-            <element signature="e#5412#5513#0" expanded="false" />
-            <element signature="e#5671#6910#0" expanded="false" />
-            <element signature="e#6166#6734#0" expanded="false" />
-            <element signature="e#6557#6706#0" expanded="false" />
-            <element signature="e#7078#7994#0" expanded="false" />
-            <element signature="e#7685#7834#0" expanded="false" />
-            <element signature="e#8132#9156#0" expanded="false" />
-            <element signature="e#8596#8910#0" expanded="false" />
-            <element signature="e#9191#9377#0" expanded="false" />
-            <element signature="e#9472#10454#0" expanded="false" />
-            <element signature="e#10097#10150#0" expanded="false" />
+            <element signature="e#1743#1774#0" expanded="false" />
+            <element signature="e#2265#2288#0" expanded="false" />
+            <element signature="e#3013#3133#0" expanded="false" />
+            <element signature="e#3178#3194#0" expanded="false" />
+            <element signature="e#3247#3263#0" expanded="false" />
+            <element signature="e#4094#4521#0" expanded="false" />
+            <element signature="e#4592#5019#0" expanded="false" />
+            <element signature="e#5087#5159#0" expanded="false" />
+            <element signature="e#5249#5366#0" expanded="false" />
+            <element signature="e#5462#5563#0" expanded="false" />
+            <element signature="e#5721#7009#0" expanded="false" />
+            <element signature="e#6265#6833#0" expanded="false" />
+            <element signature="e#6656#6805#0" expanded="false" />
+            <element signature="e#7833#7982#0" expanded="false" />
+            <element signature="e#8280#9304#0" expanded="false" />
+            <element signature="e#8744#9058#0" expanded="false" />
+            <element signature="e#9339#9525#0" expanded="false" />
+            <element signature="e#9620#10602#0" expanded="false" />
+            <element signature="e#10245#10298#0" expanded="false" />
+            <element signature="e#10645#10681#0" expanded="false" />
+            <element signature="e#10729#10756#0" expanded="false" />
+            <element signature="e#10803#10831#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -928,29 +882,28 @@
           <folding>
             <element signature="e#0#192#1" expanded="false" />
             <element signature="e#194#204#0" expanded="true" />
-            <element signature="e#1716#1747#0" expanded="false" />
-            <element signature="e#2238#2261#0" expanded="false" />
-            <element signature="e#2986#3106#0" expanded="false" />
-            <element signature="e#3151#3167#0" expanded="false" />
-            <element signature="e#3220#3236#0" expanded="false" />
-            <element signature="e#3380#3990#0" expanded="false" />
-            <element signature="e#3616#3638#0" expanded="false" />
-            <element signature="e#3763#3873#0" expanded="false" />
-            <element signature="e#4067#4494#0" expanded="false" />
-            <element signature="e#4565#4992#0" expanded="false" />
-            <element signature="e#5060#5109#0" expanded="false" />
-            <element signature="e#5199#5316#0" expanded="false" />
-            <element signature="e#5412#5513#0" expanded="false" />
-            <element signature="e#5671#6910#0" expanded="false" />
-            <element signature="e#6166#6734#0" expanded="false" />
-            <element signature="e#6557#6706#0" expanded="false" />
-            <element signature="e#7078#7994#0" expanded="false" />
-            <element signature="e#7685#7834#0" expanded="false" />
-            <element signature="e#8132#9156#0" expanded="false" />
-            <element signature="e#8596#8910#0" expanded="false" />
-            <element signature="e#9191#9377#0" expanded="false" />
-            <element signature="e#9472#10454#0" expanded="false" />
-            <element signature="e#10097#10150#0" expanded="false" />
+            <element signature="e#1743#1774#0" expanded="false" />
+            <element signature="e#2265#2288#0" expanded="false" />
+            <element signature="e#3013#3133#0" expanded="false" />
+            <element signature="e#3178#3194#0" expanded="false" />
+            <element signature="e#3247#3263#0" expanded="false" />
+            <element signature="e#4094#4521#0" expanded="false" />
+            <element signature="e#4592#5019#0" expanded="false" />
+            <element signature="e#5087#5159#0" expanded="false" />
+            <element signature="e#5249#5366#0" expanded="false" />
+            <element signature="e#5462#5563#0" expanded="false" />
+            <element signature="e#5721#7009#0" expanded="false" />
+            <element signature="e#6265#6833#0" expanded="false" />
+            <element signature="e#6656#6805#0" expanded="false" />
+            <element signature="e#7833#7982#0" expanded="false" />
+            <element signature="e#8280#9304#0" expanded="false" />
+            <element signature="e#8744#9058#0" expanded="false" />
+            <element signature="e#9339#9525#0" expanded="false" />
+            <element signature="e#9620#10602#0" expanded="false" />
+            <element signature="e#10245#10298#0" expanded="false" />
+            <element signature="e#10645#10681#0" expanded="false" />
+            <element signature="e#10729#10756#0" expanded="false" />
+            <element signature="e#10803#10831#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -994,19 +947,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
+        <state relative-caret-position="4862">
           <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
           <folding>
-            <element signature="e#1551#1564#0" expanded="true" />
+            <element signature="e#1551#1564#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Kalibrierung.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1014,118 +959,131 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
+        <state relative-caret-position="4246">
           <caret line="199" column="14" lean-forward="false" selection-start-line="199" selection-start-column="9" selection-end-line="199" selection-end-column="14" />
           <folding>
-            <element signature="e#1551#1564#0" expanded="true" />
+            <element signature="e#1551#1564#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
+        <state relative-caret-position="4400">
           <caret line="204" column="23" lean-forward="false" selection-start-line="204" selection-start-column="23" selection-end-line="204" selection-end-column="23" />
           <folding>
-            <element signature="e#194#204#0" expanded="true" />
+            <element signature="e#194#204#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/serialize.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
+        <state relative-caret-position="3916">
           <caret line="178" column="14" lean-forward="false" selection-start-line="178" selection-start-column="9" selection-end-line="178" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3_1.py">
+    <entry file="file://$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="327" column="10" lean-forward="false" selection-start-line="327" selection-start-column="5" selection-end-line="327" selection-end-column="10" />
+        <state relative-caret-position="449">
+          <caret line="367" column="58" lean-forward="true" selection-start-line="367" selection-start-column="58" selection-end-line="367" selection-end-column="58" />
           <folding>
-            <element signature="e#1551#1564#0" expanded="true" />
+            <element signature="e#0#192#1" expanded="false" />
+            <element signature="e#194#204#0" expanded="true" />
+            <element signature="e#1743#1774#0" expanded="false" />
+            <element signature="e#2265#2288#0" expanded="false" />
+            <element signature="e#3013#3133#0" expanded="false" />
+            <element signature="e#3178#3194#0" expanded="false" />
+            <element signature="e#3247#3263#0" expanded="false" />
+            <element signature="e#4094#4521#0" expanded="false" />
+            <element signature="e#4592#5019#0" expanded="false" />
+            <element signature="e#5087#5159#0" expanded="false" />
+            <element signature="e#5249#5366#0" expanded="false" />
+            <element signature="e#5462#5563#0" expanded="false" />
+            <element signature="e#5721#7009#0" expanded="false" />
+            <element signature="e#6265#6833#0" expanded="false" />
+            <element signature="e#6656#6805#0" expanded="false" />
+            <element signature="e#7833#7982#0" expanded="false" />
+            <element signature="e#8280#9304#0" expanded="false" />
+            <element signature="e#8744#9058#0" expanded="false" />
+            <element signature="e#9339#9525#0" expanded="false" />
+            <element signature="e#9620#10602#0" expanded="false" />
+            <element signature="e#10245#10298#0" expanded="false" />
+            <element signature="e#10645#10681#0" expanded="false" />
+            <element signature="e#10729#10756#0" expanded="false" />
+            <element signature="e#10803#10831#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Color_Detection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="63" column="51" lean-forward="true" selection-start-line="63" selection-start-column="51" selection-end-line="63" selection-end-column="51" />
+        <state relative-caret-position="211">
+          <caret line="145" column="0" lean-forward="true" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Kalibrierung.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+          <folding>
+            <element signature="e#165#175#0" expanded="true" />
+            <element signature="e#476#589#0" expanded="false" />
+            <element signature="e#613#844#0" expanded="false" />
+            <element signature="e#868#2260#0" expanded="false" />
+            <element signature="e#2291#3075#0" expanded="false" />
+            <element signature="e#3116#4556#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Kamera.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
-          <caret line="71" column="4" lean-forward="true" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="37" />
+          <caret line="71" column="37" lean-forward="true" selection-start-line="71" selection-start-column="37" selection-end-line="71" selection-end-column="37" />
           <folding>
             <element signature="e#203#213#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/realWorld.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1100">
-          <caret line="1" column="56" lean-forward="false" selection-start-line="1" selection-start-column="56" selection-end-line="1" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drahterfassung_OpenCV/Main_Vision.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-629">
-          <caret line="22" column="55" lean-forward="false" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+        <state relative-caret-position="277">
+          <caret line="79" column="32" lean-forward="true" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
           <folding>
             <element signature="e#0#258#1" expanded="false" />
-            <element signature="e#2257#2430#0" expanded="false" />
-            <element signature="e#2291#2430#0" expanded="false" />
-            <element signature="e#2644#2993#0" expanded="false" />
-            <element signature="e#2841#2948#0" expanded="false" />
+            <element signature="e#2951#3300#0" expanded="false" />
+            <element signature="e#3148#3255#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RTDE_Interface/RTDE_Controller_CENSE.py">
+    <entry file="file://$PROJECT_DIR$/realWorld.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state relative-caret-position="-431">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="2" selection-end-line="90" selection-end-column="34" />
           <folding>
-            <element signature="e#0#192#1" expanded="false" />
-            <element signature="e#194#204#0" expanded="true" />
-            <element signature="e#1716#1747#0" expanded="false" />
-            <element signature="e#2238#2261#0" expanded="false" />
-            <element signature="e#2986#3106#0" expanded="false" />
-            <element signature="e#3151#3167#0" expanded="false" />
-            <element signature="e#3220#3236#0" expanded="false" />
-            <element signature="e#3380#3990#0" expanded="false" />
-            <element signature="e#3616#3638#0" expanded="false" />
-            <element signature="e#3763#3873#0" expanded="false" />
-            <element signature="e#4067#4494#0" expanded="false" />
-            <element signature="e#4565#4992#0" expanded="false" />
-            <element signature="e#5060#5109#0" expanded="false" />
-            <element signature="e#5199#5316#0" expanded="false" />
-            <element signature="e#5412#5513#0" expanded="false" />
-            <element signature="e#5671#6910#0" expanded="false" />
-            <element signature="e#6166#6734#0" expanded="false" />
-            <element signature="e#6557#6706#0" expanded="false" />
-            <element signature="e#7078#7994#0" expanded="false" />
-            <element signature="e#7685#7834#0" expanded="false" />
-            <element signature="e#8132#9156#0" expanded="false" />
-            <element signature="e#8596#8910#0" expanded="false" />
-            <element signature="e#9191#9377#0" expanded="false" />
-            <element signature="e#9472#10454#0" expanded="false" />
-            <element signature="e#10097#10150#0" expanded="false" />
+            <element signature="e#31#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RTDE_Interface/rtde_client/rtde/rtde3_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1707">
+          <caret line="251" column="8" lean-forward="false" selection-start-line="251" selection-start-column="8" selection-end-line="251" selection-end-column="8" />
+          <folding>
+            <element signature="e#1551#1564#0" expanded="true" />
           </folding>
         </state>
       </provider>

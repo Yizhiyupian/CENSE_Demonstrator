@@ -76,7 +76,7 @@ def calibrate():
 def undistort_img(img):
     # checks to see if camera has been calibrated
     if Points.objpoints == [] or Points.imgpoints == []:
-        raw_input('Camera must be calibrated. Press enter to continue into calibration mode.')
+        print('Camera must be calibrated. Press enter to continue into calibration mode.')
         calibrate()
 
     # Image is turn into gray scale

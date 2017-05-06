@@ -1,12 +1,13 @@
 #from World.world import World
 from RTDE_Interface import RTDE_Controller_CENSE as rtde
 import math
+from multiprocessing import Process
 import numpy as np
 
 
 class RealWorld():
     pi = math.pi
-    scaling_constant = .01
+    scaling_constant = .03
     turn_constant = 45
 
     def move_left(self):
@@ -49,8 +50,11 @@ class RealWorld():
         # Ich weiss nicht was ich hier machen soll oder welche koordinaten sind in coordinates gespeichert.
         pass
 
-    def go_to_coordinates(self):
-        # Ich weiss nicht was ich hier machen soll oder welche koordinaten sind in coordinates gespeichert.
+    def go_to_coordinates(self, coordinates):
+        new_pos = rtde.current_position()
+        new_pos[0] = coordinates[0]
+        new_pos[2] = coordinates[1]
+        rtde.move_to_position_no_append(new_pos)
         pass
 
     def reset(self):
@@ -61,28 +65,48 @@ class RealWorld():
         rtde.disengage()
         rtde.go_camera()
         rtde.take_picture()
+        rtde.resume()
         rtde.go_start_disengaged()
         rtde.engage()
         pass
+
+# def test():
+#     print('CH1')
+#     RealWorld.reset()
+#
+#     while True:
+#         print('CH2')
+#         RealWorld.move_up()
+#         print('CH3')
+#         RealWorld.move_down()
+#         print('CH4')
+#         RealWorld.move_left()
+#         print('CH5')
+#         RealWorld.move_right()
+#         print('CH6')
+#         RealWorld.turn_clockwise()
+#         print('CH7')
+#         RealWorld.turn_counter_clockwise()
+#         print('CH8')
+#         RealWorld.take_picture()
 
 
 RealWorld = RealWorld()
 print('CH1')
 RealWorld.reset()
 
-
 while True:
-    # print('CH2')
-    # RealWorld.move_up()
-    # print('CH3')
-    # RealWorld.move_down()
-    # print('CH4')
-    # RealWorld.move_right()
-    # print('CH5')
-    # RealWorld.move_left()
-    # print('CH6')
-    # RealWorld.turn_clockwise()
-    # print('CH7')
-    # RealWorld.turn_counter_clockwise()
-    # print('CH8')
+    print('CH2')
+    RealWorld.move_up()
+    print('CH3')
+    RealWorld.move_down()
+    print('CH4')
+    RealWorld.move_left()
+    print('CH5')
+    RealWorld.move_right()
+    print('CH6')
+    RealWorld.turn_clockwise()
+    print('CH7')
+    RealWorld.turn_counter_clockwise()
+    print('CH8')
     RealWorld.take_picture()

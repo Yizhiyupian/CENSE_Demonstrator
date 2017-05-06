@@ -13,9 +13,11 @@ import RTDE_Interface.rtde_client.rtde.rtde3_1 as rtde
 import RTDE_Interface.rtde_client.rtde.rtde_config as rtde_config
 from operator import sub,abs
 from Drahterfassung_OpenCV import Main_Vision as vision
+import time
+import _thread
 
 # begin variable and object setup
-ROBOT_HOST = '169.254.203.187'
+ROBOT_HOST = '137.226.189.172'
 ROBOT_PORT = 30004
 config_filename = 'ur5_configuration_CENSE_test.xml'
 
@@ -173,6 +175,7 @@ def engage():
 class Positions:
     start_sync()
     all_positions = [START_POSITION]
+    state_idle = False
 
 
 # setp_to_list converts a serialized data object to a list
@@ -192,6 +195,9 @@ def list_to_setp(setp, list):
 
 # move_to_position changes the position and orientation of the TCP of the robot relative to the defined Cartesian plane
 def move_to_position(new_pos):
+    # resume normal robot function
+    resume()
+
     # Checks for the state of the connection
     state = con.receive()
 
@@ -230,6 +236,9 @@ def move_to_position(new_pos):
 
 # move_to_position changes the position and orientation of the TCP of the robot relative to the defined Cartesian plane
 def move_to_position_no_append(new_pos):
+    # resume normal robot function
+    resume()
+
     # Will try to move to position till current_position() is within a max error range from new_pos
     while max(map(abs, map(sub, current_position(), new_pos))) >= MAX_ERROR:
         #print(current_position())
@@ -335,7 +344,25 @@ def go_camera():
 
     return 'SUCCESS'
 
+
 # takes picture
 def take_picture():
+    set_idle()
     vision.take_picture()
 
+
+# Sets the robot to idle
+def set_idle():
+    Positions.state_idle = True
+
+
+# Pauses the idle process
+def resume():
+    Positions.state_idle = False
+
+
+# idle process sends the robot to the current position so it doesn't go to Sicherheitstop
+def idle():
+    while 1:
+        if Positions.state_idle:
+            move_to_position_no_append(current_position())

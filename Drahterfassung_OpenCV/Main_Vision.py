@@ -54,7 +54,6 @@ def take_picture():
 
     # the mask is then run through a thinning algorithm to generate a 1 pixel wide line
     skeleton = skelet.zhangSuen(mask_binary)
-    cv2.imwrite('Drahterfassung_OpenCV\Bilder\world_img.png', skeleton)
 
     # superimposes the skeleton image on the original image
     img_skelet = np.zeros((rows, cols, 3), np.uint8)
@@ -66,8 +65,19 @@ def take_picture():
             else:
                 img_skelet[j, i] = images[0][j, i]
 
+    gray_skeleton = np.zeros((rows, cols, 3), np.uint8)
+    rows, cols = skeleton.shape
+    for i in range(rows):
+        for j in range(cols):
+            if skeleton[i, j] == 1:
+                gray_skeleton[i, j] = [255, 255, 255]
+            else:
+                gray_skeleton[i, j] = [0, 0, 0]
+
     images.append(img_skelet)
     images.append(skeleton)
+
+    cv2.imwrite('Drahterfassung_OpenCV\Bilder\world_img.png', gray_skeleton)
 
     # returns the images in an array
     return images
