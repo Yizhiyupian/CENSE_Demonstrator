@@ -14,6 +14,7 @@ import time
 from Drahterfassung_OpenCV.calibration_vars import objpv
 from Drahterfassung_OpenCV.calibration_vars import imgpv
 import Drahterfassung_OpenCV.Color_Detection as colors
+from operator import itemgetter
 
 
 class Points:
@@ -100,19 +101,19 @@ def undistort_img(img):
 
 def perspective_undistort(image):
     # scale at which the image will be processed
-    scale = 0.7
+    scale = 1
 
     # the color focus area will be segmented into color bands this states how many bands will be analyzed
     bands = 8
 
     # minimum amount of bands in which a pixel has to be to make it to the resulting mask
-    thresh = 3
+    thresh = 4
 
     # color hue to be looked for
-    color = 85
+    color = 70
 
     # variation range for hue, saturation, and value e.g.: color+focus = max_hue, color-focus = min_hue
-    focus = [25, 35, 255, 35, 255]
+    focus = [20, 51, 255, 80, 255]
 
     # image is color analyzed to find the location of the corner points
     images = colors.color_vision(color, focus, bands, thresh, scale, image=image)
@@ -124,13 +125,22 @@ def perspective_undistort(image):
     center_points = []
     for cnt in contours:
         (x, y), radius = cv2.minEnclosingCircle(cnt)
-        center_points.append([int(x), int(y)])
+        center_points.append([int(y), int(x), int(x+y)])
+    center_points = sort_points(center_points)
 
     # center point coordinates and end coordinates for the corner center points are prepped for the transformation
     rows, cols = images[len(images)-1].shape
-    pts1 = np.float32(center_points)
-    pts2 = np.float32([[0, 0], [rows, 0], [0, cols], [rows, cols]])
+    pts1 = np.float32(np.delete(center_points,2,1))
+    print(rows, cols)
+    print(pts1)
+    pts2 = np.float32([[-10, -10], [rows-10, -10], [-10, cols], [rows-10, cols]])
     M = cv2.getPerspectiveTransform(pts1, pts2)
-    undistorted = cv2.warpPerspective(image, M, (rows, cols))
+    undistorted = cv2.warpPerspective(image, M, (cols, rows))
+    print(undistorted.shape)
 
     return undistorted
+
+
+def sort_points(center_points):
+    new_pts = tuple(sorted(center_points, key=itemgetter(2,0)))
+    return new_pts

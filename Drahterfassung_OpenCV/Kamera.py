@@ -14,7 +14,7 @@ import Drahterfassung_OpenCV.Kalibrierung as cal
 
 # camera port and amount of frames to be discarded while focusing
 port = 0
-frames = 5
+frames = 25
 
 
 # class with variables needed to know if camera is in use or not
@@ -64,9 +64,9 @@ def capture_image(name):
     release_cam()
 
     # image is transformed into undistorted version using the module Kalibrierung.py
-    camera_capture = cal.undistort_img(camera_capture)
+    #camera_capture = cal.undistort_img(camera_capture)
 
     # image perspective is undistorted using the module Kalibrierung.py
-    #camera_capture = cal.perspective_undistort(camera_capture)
+    camera_capture = cal.perspective_undistort(camera_capture)
 
     cv2.imwrite(name, camera_capture)

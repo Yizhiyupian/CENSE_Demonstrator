@@ -15,27 +15,28 @@ import matplotlib.pyplot as plt
 import Drahterfassung_OpenCV.Color_Detection as colors
 import Drahterfassung_OpenCV.Thinning as skelet
 import Drahterfassung_OpenCV.Kamera as cam
+from operator import itemgetter
 
 
 # takes a picture and saves it in the file path 'name', processes it and saves the processed image as 'world_img.png'
 def take_picture():
     # file path
-    name = 'Drahterfassung_OpenCV\Bilder\camera_picture.png'
+    name = "Bilder\camera_picture.png"
 
     # scale at which the image will be processed
-    scale = 0.7
+    scale = 1
 
     # the color focus area will be segmented into color bands this states how many bands will be analyzed
     bands = 8
 
     # minimum amount of bands in which a pixel has to be to make it to the resulting mask
-    thresh = 3
+    thresh = 4
 
     # color hue to be looked for
     color = 25
 
     # variation range for hue, saturation, and value e.g.: color+focus = max_hue, color-focus = min_hue
-    focus = [25, 35, 255, 35, 255]
+    focus = [30, 35, 255, 35, 255]
 
     # a 'real-time' video feed with the color detection filter will be shown
     bands, thresh, color, focus = colors.preview_colors(color, focus, bands, thresh, scale)
@@ -44,7 +45,7 @@ def take_picture():
     cam.capture_image(name)
 
     # a series of masks will be generated and saved onto 'images'
-    images = colors.color_vision(color, focus, bands, thresh, scale, name)
+    images = colors.color_vision(color, focus, bands, thresh, scale, name=name)
 
     # the resulting mask saved in images will be turned into a binary mask
     ret, mask_binary = cv2.threshold(images[len(images)-1], 0, 1, cv2.THRESH_BINARY)
@@ -73,11 +74,12 @@ def take_picture():
                 gray_skeleton[i, j] = [255, 255, 255]
             else:
                 gray_skeleton[i, j] = [0, 0, 0]
-
+    gray_skeleton = np.delete(gray_skeleton,0,1)
+    gray_skeleton = np.delete(gray_skeleton,cols-2,1)
     images.append(img_skelet)
     images.append(skeleton)
 
-    cv2.imwrite('Drahterfassung_OpenCV\Bilder\world_img.png', gray_skeleton)
+    cv2.imwrite('Bilder\world_img.png', gray_skeleton)
 
     # returns the images in an array
     return images
@@ -95,3 +97,6 @@ def plot_images(images):
     plt.show()
 
 #plot_images(take_picture())
+
+images = take_picture()
+plot_images(images)

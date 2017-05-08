@@ -14,7 +14,7 @@ import numpy as np
 # an image or saved image will be color processed and the masks will be returned in an array
 def color_vision(color, focus, bands, thresh, scale, name=None, image=None):
     # the bands will be saved into an array of masks
-    masks = colorDetect(bands, color, focus, scale, name, image)
+    masks = colorDetect(bands, color, focus, scale, name=name, image=image)
     rows, cols = masks[2].shape
 
     # an empty numpy array will be generated with the shape of the masks
@@ -34,14 +34,14 @@ def color_vision(color, focus, bands, thresh, scale, name=None, image=None):
 
     # morphological transformations will be applied to the resulting mask to be able to remove noise
     kernel = np.ones((1,1), np.uint8)
-    sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_OPEN, kernel)
-    sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_CLOSE, kernel)
-#    sum_mask = cv2.dilate(sum_mask, None, iterations=1)
-#    sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_OPEN, kernel)
-#    sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_OPEN, kernel)
+    # sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_OPEN, kernel)
+    # sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_CLOSE, kernel)
+    sum_mask = cv2.dilate(sum_mask, None, iterations=6)
+#   sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_OPEN, kernel)
+#   sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_OPEN, kernel)
 #   sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_CLOSE, kernel)
 #   sum_mask = cv2.morphologyEx(sum_mask, cv2.MORPH_OPEN, kernel)
-#   sum_mask = cv2.erode(sum_mask, None, iterations=1)
+    sum_mask = cv2.erode(sum_mask, None, iterations=5)
 
     # resulting mask will be applied to the original image to see what the camera sees from the mask and saved to masks
     res = cv2.bitwise_and(masks[0], masks[0], mask=sum_mask)
